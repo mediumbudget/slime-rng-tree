@@ -8,93 +8,119 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    background: #1a1a1e;
-    color: #e8e8e8;
+    background: #13121a;
+    color: #e8e8f0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     font-size: 16px;
-    line-height: 1.5;
-    padding: 2rem 1rem;
+    min-height: 100vh;
+    padding: 2rem 1.5rem;
   }
 
   .container {
-    max-width: 680px;
+    max-width: 1140px;
     margin: 0 auto;
   }
 
-  .top-row {
+  .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 0.75rem;
+    margin-bottom: 1.5rem;
   }
 
-  .top-row p {
-    font-size: 13px;
-    color: #999;
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
   }
 
-  #reset-btn {
-    font-size: 12px;
-    padding: 4px 14px;
+  .title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #f0f0ff;
+    letter-spacing: -0.3px;
+  }
+
+  .beta-badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
     border-radius: 999px;
-    border: 0.5px solid #555;
+    border: 1.5px solid #5a50a0;
+    color: #a090e0;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .reset-btn {
+    font-size: 13px;
+    font-weight: 500;
+    padding: 7px 20px;
+    border-radius: 999px;
+    border: 1.5px solid #4a4070;
     background: transparent;
-    color: #aaa;
+    color: #b0a8e0;
     cursor: pointer;
     font-family: inherit;
-    transition: background 0.12s;
+    transition: all 0.15s;
   }
-  #reset-btn:hover { background: #2a2a2e; }
+  .reset-btn:hover { background: #1e1a2e; border-color: #7060b0; color: #d0c8f0; }
 
   #search {
     width: 100%;
-    padding: 9px 14px;
-    background: #2a2a2e;
-    border: 0.5px solid #3a3a3e;
-    border-radius: 8px;
-    color: #e8e8e8;
-    font-size: 14px;
+    padding: 14px 18px;
+    background: #1c1a2a;
+    border: 1.5px solid #2e2a44;
+    border-radius: 12px;
+    color: #e8e8f0;
+    font-size: 15px;
     font-family: inherit;
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem;
     outline: none;
-    transition: border-color 0.12s;
+    transition: border-color 0.15s;
   }
-  #search::placeholder { color: #666; }
-  #search:focus { border-color: #666; }
+  #search::placeholder { color: #5a5570; }
+  #search:focus { border-color: #5a50a0; }
 
   #slime-grid {
+    background: #1a1828;
+    border: 1.5px solid #2a2540;
+    border-radius: 14px;
+    padding: 12px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 6px;
-    max-height: 260px;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 8px;
+    max-height: 340px;
     overflow-y: auto;
     margin-bottom: 1.5rem;
-    padding-right: 2px;
   }
 
   #slime-grid::-webkit-scrollbar { width: 6px; }
   #slime-grid::-webkit-scrollbar-track { background: transparent; }
-  #slime-grid::-webkit-scrollbar-thumb { background: #3a3a3e; border-radius: 3px; }
+  #slime-grid::-webkit-scrollbar-thumb { background: #3a3560; border-radius: 3px; }
 
   .slime-card {
-    padding: 8px 6px;
-    border-radius: 8px;
-    border: 0.5px solid #3a3a3e;
-    background: #232327;
+    padding: 12px 8px;
+    border-radius: 10px;
+    border: 1.5px solid #2a2540;
+    background: #201e30;
     cursor: pointer;
     text-align: center;
     transition: all 0.12s;
     font-family: inherit;
   }
-  .slime-card:hover { background: #2a2a2e; border-color: #555; }
-  .slime-card.active { border: 1.5px solid #7F77DD; background: #2a2840; }
+  .slime-card:hover { background: #272440; border-color: #4a4070; }
+  .slime-card.active { border-color: #7060c0; background: #25204a; }
 
-  .slime-name { font-size: 11px; font-weight: 500; color: #e8e8e8; display: block; margin-bottom: 2px; }
-  .slime-tier { font-size: 10px; display: block; }
+  .slime-name { font-size: 13px; font-weight: 600; color: #e8e8f0; display: block; margin-bottom: 4px; }
+  .slime-tier { font-size: 11px; display: block; font-weight: 500; }
 
-  .mut-label {
-    font-size: 13px;
-    color: #999;
+  .mut-section-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #7060c0;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
     margin: 0 0 0.75rem;
   }
 
@@ -106,20 +132,20 @@
   }
 
   .mut-btn {
-    padding: 7px 14px;
+    padding: 9px 22px;
     border-radius: 999px;
-    border: 1.5px solid #3a3a3e;
-    background: #232327;
-    color: #e8e8e8;
-    font-size: 13px;
+    border: 1.5px solid #3a3560;
+    background: #1a1828;
+    color: #c0b8e8;
+    font-size: 14px;
     cursor: pointer;
     transition: all 0.12s;
     font-family: inherit;
-    font-weight: 400;
+    font-weight: 500;
   }
-  .mut-btn:hover { background: #2a2a2e; }
-  .mut-btn.active { background: #2a2840; border-color: #7F77DD; color: #AFA9EC; font-weight: 500; }
-  .mut-btn.disabled-btn { opacity: 0.35; cursor: not-allowed; }
+  .mut-btn:hover { background: #222040; border-color: #5a50a0; }
+  .mut-btn.active { background: #2a2050; border-color: #8070d0; color: #d0c8ff; }
+  .mut-btn.disabled-btn { opacity: 0.3; cursor: not-allowed; }
 
   #mut-warning {
     font-size: 12px;
@@ -129,78 +155,102 @@
   }
 
   .result-box {
-    background: #232327;
-    border-radius: 12px;
-    padding: 1.25rem 1.5rem;
-    margin-bottom: 1.25rem;
-    border: 0.5px solid #3a3a3e;
+    background: #1a1828;
+    border: 1.5px solid #2a2540;
+    border-radius: 14px;
+    padding: 1.5rem 1.75rem;
+    margin-top: 1.25rem;
   }
 
   .result-stats {
     display: flex;
-    gap: 2rem;
+    gap: 2.5rem;
     flex-wrap: wrap;
+    margin-bottom: 1.25rem;
   }
 
   .stat-label {
     font-size: 11px;
-    color: #666;
-    margin: 0 0 3px;
+    font-weight: 700;
+    color: #5a5580;
+    margin: 0 0 4px;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
   }
 
   .stat-value {
-    font-size: 15px;
-    font-weight: 500;
-    color: #e8e8e8;
+    font-size: 16px;
+    font-weight: 600;
+    color: #e8e8f0;
     margin: 0;
   }
 
   .divider {
     border: none;
-    border-top: 0.5px solid #3a3a3e;
-    margin: 1rem 0 0.75rem;
+    border-top: 1px solid #2a2540;
+    margin: 0 0 1.25rem;
+  }
+
+  .final-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #5a5580;
+    margin: 0 0 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
   }
 
   #rarity-value {
-    font-size: 34px;
-    font-weight: 500;
-    color: #e8e8e8;
-    margin: 0 0 4px;
+    font-size: 36px;
+    font-weight: 700;
+    color: #e8e8f0;
+    margin: 0 0 8px;
+    min-height: 44px;
+  }
+
+  #rarity-indicator {
+    width: 40px;
+    height: 3px;
+    background: #4a4070;
+    border-radius: 2px;
+    margin-bottom: 10px;
+    transition: background 0.3s;
   }
 
   #rarity-label {
-    font-size: 13px;
-    color: #666;
+    font-size: 14px;
+    color: #5a5580;
     margin: 0;
   }
 
   #combo-hint {
     display: none;
-    background: #1e1e22;
-    border: 0.5px solid #3a3a3e;
-    border-radius: 8px;
-    padding: 0.75rem 1rem;
+    background: #1e1c2e;
+    border: 1px solid #3a3560;
+    border-radius: 10px;
+    padding: 0.75rem 1.1rem;
+    margin-top: 1rem;
   }
-
-  .combo-sub { font-size: 12px; color: #666; margin: 0 0 2px; }
-  .combo-name { font-size: 14px; font-weight: 500; margin: 0; color: #e8e8e8; }
+  .combo-sub { font-size: 11px; color: #5a5580; margin: 0 0 3px; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
+  .combo-name-text { font-size: 14px; font-weight: 600; margin: 0; color: #c0b8e8; }
 </style>
 </head>
 <body>
 <div class="container">
 
-  <div class="top-row">
-    <p>Search or pick a slime</p>
-    <button id="reset-btn" onclick="resetAll()">Reset</button>
+  <div class="header">
+    <div class="header-left">
+      <span class="title">Rarity Calculator</span>
+      <span class="beta-badge">Beta</span>
+    </div>
+    <button class="reset-btn" onclick="resetAll()">Reset</button>
   </div>
 
   <input type="text" id="search" placeholder="Search slimes..." />
 
   <div id="slime-grid"></div>
 
-  <p class="mut-label">Select mutations</p>
+  <p class="mut-section-label">Mutations</p>
   <div id="mutation-buttons"></div>
   <p id="mut-warning"></p>
 
@@ -211,7 +261,7 @@
         <p class="stat-value" id="sel-slime">—</p>
       </div>
       <div>
-        <p class="stat-label">Base rarity</p>
+        <p class="stat-label">Base Rarity</p>
         <p class="stat-value" id="base-rarity">—</p>
       </div>
       <div>
@@ -220,14 +270,15 @@
       </div>
     </div>
     <hr class="divider">
-    <p class="stat-label">Final rarity</p>
+    <p class="final-label">Final Rarity</p>
     <p id="rarity-value">—</p>
+    <div id="rarity-indicator"></div>
     <p id="rarity-label">Select a slime to begin</p>
-  </div>
 
-  <div id="combo-hint">
-    <p class="combo-sub">Matched preset combo</p>
-    <p class="combo-name" id="combo-name"></p>
+    <div id="combo-hint">
+      <p class="combo-sub">Matched preset combo</p>
+      <p class="combo-name-text" id="combo-name"></p>
+    </div>
   </div>
 
 </div>
@@ -291,12 +342,12 @@ let selectedSlime = null;
 const selectedMuts = new Set();
 
 function fmtNum(n) {
-  if (n >= 1e18) return (n/1e18).toFixed(3).replace(/\.?0+$/,'') + ' quintillion';
-  if (n >= 1e15) return (n/1e15).toFixed(3).replace(/\.?0+$/,'') + ' quadrillion';
-  if (n >= 1e12) return (n/1e12).toFixed(3).replace(/\.?0+$/,'') + ' trillion';
-  if (n >= 1e9)  return (n/1e9).toFixed(3).replace(/\.?0+$/,'') + 'B';
-  if (n >= 1e6)  return (n/1e6).toFixed(3).replace(/\.?0+$/,'') + 'M';
-  if (n >= 1e3)  return (n/1e3).toFixed(1).replace(/\.?0+$/,'') + 'K';
+  if (n >= 1e18) return (n/1e18).toFixed(2).replace(/\.?0+$/,'') + 'Qn';
+  if (n >= 1e15) return (n/1e15).toFixed(2).replace(/\.?0+$/,'') + 'Qd';
+  if (n >= 1e12) return (n/1e12).toFixed(2).replace(/\.?0+$/,'') + 'T';
+  if (n >= 1e9)  return (n/1e9).toFixed(2).replace(/\.?0+$/,'') + 'B';
+  if (n >= 1e6)  return (n/1e6).toFixed(2).replace(/\.?0+$/,'') + 'M';
+  if (n >= 1e3)  return (n/1e3).toFixed(2).replace(/\.?0+$/,'') + 'K';
   return Math.round(n).toLocaleString();
 }
 function fmt(n) { return '1 / ' + fmtNum(n); }
@@ -350,6 +401,7 @@ function resetAll() {
   Object.values(mutBtns).forEach(b => b.classList.remove('active','disabled-btn'));
   document.getElementById('mut-warning').textContent = '';
   document.getElementById('combo-hint').style.display = 'none';
+  document.getElementById('rarity-indicator').style.background = '#4a4070';
   renderGrid(); update();
 }
 
@@ -364,7 +416,8 @@ function update() {
     document.getElementById('base-rarity').textContent = '—';
     document.getElementById('rarity-value').textContent = '—';
     document.getElementById('rarity-label').textContent = 'Select a slime to begin';
-    document.getElementById('rarity-label').style.color = '#666';
+    document.getElementById('rarity-label').style.color = '#5a5580';
+    document.getElementById('rarity-indicator').style.background = '#4a4070';
     document.getElementById('combo-hint').style.display = 'none';
     return;
   }
@@ -379,6 +432,7 @@ function update() {
   document.getElementById('rarity-value').textContent = fmt(final);
   document.getElementById('rarity-label').textContent = slime.tier + (sorted.length ? ' + ' + sorted.join(' ') : '');
   document.getElementById('rarity-label').style.color = slime.color;
+  document.getElementById('rarity-indicator').style.background = slime.color;
   if (presetMatch) {
     document.getElementById('combo-hint').style.display = 'block';
     document.getElementById('combo-name').textContent = presetMatch.name + ' (x' + presetMatch.mult.toLocaleString() + ' multiplier)';
