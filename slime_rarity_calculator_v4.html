@@ -6,230 +6,94 @@
 <title>Slime Rarity Calculator</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   body {
-    background: #13121a;
-    color: #e8e8f0;
+    background: #13121a; color: #e8e8f0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    font-size: 16px;
-    min-height: 100vh;
-    padding: 2rem 1.5rem;
+    font-size: 16px; min-height: 100vh; padding: 2rem 1.5rem;
   }
-
-  .container {
-    max-width: 1140px;
-    margin: 0 auto;
-  }
-
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1.5rem;
-  }
-
-  .header-left {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .title {
-    font-size: 26px;
-    font-weight: 700;
-    color: #f0f0ff;
-    letter-spacing: -0.3px;
-  }
-
+  .container { max-width: 1140px; margin: 0 auto; }
+  .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .title { font-size: 26px; font-weight: 700; color: #f0f0ff; letter-spacing: -0.3px; }
   .beta-badge {
-    font-size: 11px;
-    font-weight: 600;
-    padding: 3px 10px;
-    border-radius: 999px;
-    border: 1.5px solid #5a50a0;
-    color: #a090e0;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 999px;
+    border: 1.5px solid #5a50a0; color: #a090e0; letter-spacing: 0.08em; text-transform: uppercase;
   }
-
   .reset-btn {
-    font-size: 13px;
-    font-weight: 500;
-    padding: 7px 20px;
-    border-radius: 999px;
-    border: 1.5px solid #4a4070;
-    background: transparent;
-    color: #b0a8e0;
-    cursor: pointer;
-    font-family: inherit;
-    transition: all 0.15s;
+    font-size: 13px; font-weight: 500; padding: 7px 20px; border-radius: 999px;
+    border: 1.5px solid #4a4070; background: transparent; color: #b0a8e0;
+    cursor: pointer; font-family: inherit; transition: all 0.15s;
   }
   .reset-btn:hover { background: #1e1a2e; border-color: #7060b0; color: #d0c8f0; }
-
   #search {
-    width: 100%;
-    padding: 14px 18px;
-    background: #1c1a2a;
-    border: 1.5px solid #2e2a44;
-    border-radius: 12px;
-    color: #e8e8f0;
-    font-size: 15px;
-    font-family: inherit;
-    margin-bottom: 1rem;
-    outline: none;
-    transition: border-color 0.15s;
+    width: 100%; padding: 14px 18px; background: #1c1a2a;
+    border: 1.5px solid #2e2a44; border-radius: 12px; color: #e8e8f0;
+    font-size: 15px; font-family: inherit; margin-bottom: 1rem; outline: none; transition: border-color 0.15s;
   }
   #search::placeholder { color: #5a5570; }
   #search:focus { border-color: #5a50a0; }
-
   #slime-grid {
-    background: #1a1828;
-    border: 1.5px solid #2a2540;
-    border-radius: 14px;
-    padding: 12px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-    gap: 8px;
-    max-height: 340px;
-    overflow-y: auto;
-    margin-bottom: 1.5rem;
+    background: #1a1828; border: 1.5px solid #2a2540; border-radius: 14px;
+    padding: 12px; display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 8px; max-height: 340px; overflow-y: auto; margin-bottom: 1.5rem;
   }
-
   #slime-grid::-webkit-scrollbar { width: 6px; }
   #slime-grid::-webkit-scrollbar-track { background: transparent; }
   #slime-grid::-webkit-scrollbar-thumb { background: #3a3560; border-radius: 3px; }
-
   .slime-card {
-    padding: 12px 8px;
-    border-radius: 10px;
-    border: 1.5px solid #2a2540;
-    background: #201e30;
-    cursor: pointer;
-    text-align: center;
-    transition: all 0.12s;
-    font-family: inherit;
+    padding: 12px 8px; border-radius: 10px; border: 1.5px solid #2a2540;
+    background: #201e30; cursor: pointer; text-align: center; transition: all 0.12s; font-family: inherit;
   }
   .slime-card:hover { background: #272440; border-color: #4a4070; }
   .slime-card.active { border-color: #7060c0; background: #25204a; }
-
   .slime-name { font-size: 13px; font-weight: 600; color: #e8e8f0; display: block; margin-bottom: 4px; }
   .slime-tier { font-size: 11px; display: block; font-weight: 500; }
-
-  .mut-section-label {
-    font-size: 12px;
-    font-weight: 700;
-    color: #7060c0;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin: 0 0 0.75rem;
+  .section-label {
+    font-size: 12px; font-weight: 700; color: #7060c0;
+    letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 0.75rem;
   }
-
-  #mutation-buttons {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 0.5rem;
+  .level-row {
+    display: flex; align-items: center; gap: 16px;
+    background: #1a1828; border: 1.5px solid #2a2540; border-radius: 12px;
+    padding: 12px 16px; margin-bottom: 1.5rem;
   }
-
+  .level-row label { font-size: 13px; color: #a0a0c0; font-weight: 600; white-space: nowrap; }
+  .level-input {
+    width: 100px; padding: 6px 10px; background: #13121a;
+    border: 1.5px solid #3a3560; border-radius: 8px;
+    color: #e8e8f0; font-size: 14px; font-family: inherit; text-align: center; outline: none;
+  }
+  .level-input:focus { border-color: #7060c0; }
+  #mutation-buttons { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 0.5rem; }
   .mut-btn {
-    padding: 9px 22px;
-    border-radius: 999px;
-    border: 1.5px solid #3a3560;
-    background: #1a1828;
-    color: #c0b8e8;
-    font-size: 14px;
-    cursor: pointer;
-    transition: all 0.12s;
-    font-family: inherit;
-    font-weight: 500;
+    padding: 9px 22px; border-radius: 999px; border: 1.5px solid #3a3560;
+    background: #1a1828; color: #c0b8e8; font-size: 14px; cursor: pointer;
+    transition: all 0.12s; font-family: inherit; font-weight: 500;
   }
   .mut-btn:hover { background: #222040; border-color: #5a50a0; }
   .mut-btn.active { background: #2a2050; border-color: #8070d0; color: #d0c8ff; }
   .mut-btn.disabled-btn { opacity: 0.3; cursor: not-allowed; }
-
-  #mut-warning {
-    font-size: 12px;
-    color: #E24B4A;
-    min-height: 16px;
-    margin: 0 0 1.25rem;
-  }
-
+  #mut-warning { font-size: 12px; color: #E24B4A; min-height: 16px; margin: 0 0 1.25rem; }
   .result-box {
-    background: #1a1828;
-    border: 1.5px solid #2a2540;
-    border-radius: 14px;
-    padding: 1.5rem 1.75rem;
-    margin-top: 1.25rem;
+    background: #1a1828; border: 1.5px solid #2a2540; border-radius: 14px;
+    padding: 1.5rem 1.75rem; margin-top: 1.25rem;
   }
-
-  .result-stats {
-    display: flex;
-    gap: 2.5rem;
-    flex-wrap: wrap;
-    margin-bottom: 1.25rem;
+  .result-stats { display: flex; gap: 2.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .stat-label { font-size: 11px; font-weight: 700; color: #5a5580; margin: 0 0 4px; text-transform: uppercase; letter-spacing: 0.08em; }
+  .stat-value { font-size: 16px; font-weight: 600; color: #e8e8f0; margin: 0; }
+  .divider { border: none; border-top: 1px solid #2a2540; margin: 0 0 1.25rem; }
+  .final-label { font-size: 11px; font-weight: 700; color: #5a5580; margin: 0 0 6px; text-transform: uppercase; letter-spacing: 0.08em; }
+  #rarity-value { font-size: 36px; font-weight: 700; color: #e8e8f0; margin: 0 0 8px; min-height: 44px; }
+  #rarity-indicator { width: 40px; height: 3px; background: #4a4070; border-radius: 2px; margin-bottom: 10px; transition: background 0.3s; }
+  #rarity-label { font-size: 14px; color: #5a5580; margin: 0; }
+  .stats-panel {
+    flex: 1; min-width: 220px; background: #13121a;
+    border-radius: 10px; padding: 1rem 1.25rem; border: 1px solid #2a2540;
   }
-
-  .stat-label {
-    font-size: 11px;
-    font-weight: 700;
-    color: #5a5580;
-    margin: 0 0 4px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-
-  .stat-value {
-    font-size: 16px;
-    font-weight: 600;
-    color: #e8e8f0;
-    margin: 0;
-  }
-
-  .divider {
-    border: none;
-    border-top: 1px solid #2a2540;
-    margin: 0 0 1.25rem;
-  }
-
-  .final-label {
-    font-size: 11px;
-    font-weight: 700;
-    color: #5a5580;
-    margin: 0 0 6px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-
-  #rarity-value {
-    font-size: 36px;
-    font-weight: 700;
-    color: #e8e8f0;
-    margin: 0 0 8px;
-    min-height: 44px;
-  }
-
-  #rarity-indicator {
-    width: 40px;
-    height: 3px;
-    background: #4a4070;
-    border-radius: 2px;
-    margin-bottom: 10px;
-    transition: background 0.3s;
-  }
-
-  #rarity-label {
-    font-size: 14px;
-    color: #5a5580;
-    margin: 0;
-  }
-
+  .stats-grid { display: flex; gap: 1.5rem; flex-wrap: wrap; }
   #combo-hint {
-    display: none;
-    background: #1e1c2e;
-    border: 1px solid #3a3560;
-    border-radius: 10px;
-    padding: 0.75rem 1.1rem;
-    margin-top: 1rem;
+    display: none; background: #1e1c2e; border: 1px solid #3a3560;
+    border-radius: 10px; padding: 0.75rem 1.1rem; margin-top: 1rem;
   }
   .combo-sub { font-size: 11px; color: #5a5580; margin: 0 0 3px; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
   .combo-name-text { font-size: 14px; font-weight: 600; margin: 0; color: #c0b8e8; }
@@ -237,7 +101,6 @@
 </head>
 <body>
 <div class="container">
-
   <div class="header">
     <div class="header-left">
       <span class="title">Rarity Calculator</span>
@@ -247,27 +110,24 @@
   </div>
 
   <input type="text" id="search" placeholder="Search slimes..." />
-
   <div id="slime-grid"></div>
 
-  <p class="mut-section-label">Mutations</p>
+  <p class="section-label">Level</p>
+  <div class="level-row">
+    <label>Level</label>
+    <input type="number" id="level-num" class="level-input" min="1" max="9999" value="1" oninput="syncLevel()">
+  </div>
+
+  <p class="section-label">Mutations</p>
   <div id="mutation-buttons"></div>
   <p id="mut-warning"></p>
 
   <div class="result-box">
     <div class="result-stats">
-      <div>
-        <p class="stat-label">Slime</p>
-        <p class="stat-value" id="sel-slime">—</p>
-      </div>
-      <div>
-        <p class="stat-label">Base Rarity</p>
-        <p class="stat-value" id="base-rarity">—</p>
-      </div>
-      <div>
-        <p class="stat-label">Mutations</p>
-        <p class="stat-value" id="active-label">None</p>
-      </div>
+      <div><p class="stat-label">Slime</p><p class="stat-value" id="sel-slime">—</p></div>
+      <div><p class="stat-label">Level</p><p class="stat-value" id="res-level">0</p></div>
+      <div><p class="stat-label">Base Rarity</p><p class="stat-value" id="base-rarity">—</p></div>
+      <div><p class="stat-label">Mutations</p><p class="stat-value" id="active-label">None</p></div>
     </div>
     <hr class="divider">
     <div style="display:flex;gap:2rem;flex-wrap:wrap;align-items:flex-start;">
@@ -277,12 +137,12 @@
         <div id="rarity-indicator"></div>
         <p id="rarity-label">Select a slime to begin</p>
       </div>
-      <div style="flex:1;min-width:200px;background:#13121a;border-radius:10px;padding:1rem 1.25rem;border:1px solid #2a2540;">
-        <p class="final-label" style="margin-bottom:0.75rem;">Stats with mutations</p>
-        <div style="display:flex;gap:1.5rem;">
+      <div class="stats-panel">
+        <p class="final-label" style="margin-bottom:0.75rem;">Stats at this level &amp; mutations</p>
+        <div class="stats-grid">
           <div><p class="stat-label">💪 ATK</p><p class="stat-value" id="stat-atk">—</p></div>
           <div><p class="stat-label">❤️ HP</p><p class="stat-value" id="stat-hp">—</p></div>
-          <div><p class="stat-label">Stat multi</p><p class="stat-value" id="stat-multi">—</p></div>
+          <div><p class="stat-label">Stat multi</p><p class="stat-value" id="stat-multi">x1</p></div>
         </div>
       </div>
     </div>
@@ -291,10 +151,11 @@
       <p class="combo-name-text" id="combo-name"></p>
     </div>
   </div>
-
 </div>
 
 <script>
+// formula: atk = (baseATK + floor((level-1) / 2)) * statMult
+//          hp  = (baseHP / 10) * (9 + level) * statMult
 const slimes = [
   {name:"Goopy",base:3,tier:"Basic",color:"#aaaaaa",atk:4,hp:10},
   {name:"Sunset",base:5,tier:"Basic",color:"#aaaaaa",atk:5,hp:15},
@@ -364,22 +225,6 @@ const slimes = [
   {name:"Frosty",base:1070000000000,tier:"Nova",color:"#db88d3",atk:57600,hp:172000},
 ];
 
-// stat multipliers per mutation combo (sorted key -> multiplier)
-const statMultipliers = {
-  '':           1,
-  'big':        4,
-  'shiny':      6,
-  'huge':       10,
-  'inverted':   13,
-  'big+inverted':      52,
-  'huge+inverted':     130,
-  'inverted+shiny':    78,
-  'big+shiny':         24,
-  'huge+shiny':        60,
-  'big+inverted+shiny':  312,
-  'huge+inverted+shiny': 780,
-};
-
 const mutations = [
   {id:'big',label:'big',mult:100},{id:'shiny',label:'shiny',mult:250},
   {id:'huge',label:'huge',mult:1000},{id:'inverted',label:'inverted',mult:2500},
@@ -394,8 +239,14 @@ const presets = [
   {ids:['big','inverted','shiny'],name:'shiny big inverted',mult:62500000},
   {ids:['huge','inverted','shiny'],name:'shiny huge inverted',mult:625000000},
 ];
+const statMultipliers = {
+  '':1,'big':4,'shiny':6,'huge':10,'inverted':13,
+  'big+inverted':52,'huge+inverted':130,'inverted+shiny':78,
+  'big+shiny':24,'huge+shiny':60,
+  'big+inverted+shiny':312,'huge+inverted+shiny':780,
+};
 
-let selectedSlime = null;
+let selectedSlime = null, currentLevel = 1;
 const selectedMuts = new Set();
 
 function fmtNum(n) {
@@ -408,6 +259,11 @@ function fmtNum(n) {
   return Math.round(n).toLocaleString();
 }
 function fmt(n) { return '1 / ' + fmtNum(n); }
+
+function syncLevel() {
+  currentLevel = Math.max(1, parseInt(document.getElementById('level-num').value) || 1);
+  update();
+}
 
 function renderGrid(filter) {
   const grid = document.getElementById('slime-grid');
@@ -453,15 +309,13 @@ function refreshMutButtons() {
 }
 
 function resetAll() {
-  selectedSlime = null; selectedMuts.clear();
+  selectedSlime = null; selectedMuts.clear(); currentLevel = 1;
   document.getElementById('search').value = '';
+  document.getElementById('level-num').value = 1;
   Object.values(mutBtns).forEach(b => b.classList.remove('active','disabled-btn'));
   document.getElementById('mut-warning').textContent = '';
   document.getElementById('combo-hint').style.display = 'none';
   document.getElementById('rarity-indicator').style.background = '#4a4070';
-  document.getElementById('stat-atk').textContent = '—';
-  document.getElementById('stat-hp').textContent = '—';
-  document.getElementById('stat-multi').textContent = '—';
   renderGrid(); update();
 }
 
@@ -471,40 +325,37 @@ function update() {
   const slime = slimes.find(s => s.name === selectedSlime);
   const sorted = [...selectedMuts].sort();
   document.getElementById('active-label').textContent = sorted.length ? sorted.join(' + ') : 'None';
+  document.getElementById('res-level').textContent = currentLevel;
+
   if (!slime) {
-    document.getElementById('sel-slime').textContent = '—';
-    document.getElementById('base-rarity').textContent = '—';
-    document.getElementById('rarity-value').textContent = '—';
+    ['sel-slime','base-rarity','rarity-value','stat-atk','stat-hp'].forEach(id => document.getElementById(id).textContent = '—');
+    document.getElementById('stat-multi').textContent = 'x1';
     document.getElementById('rarity-label').textContent = 'Select a slime to begin';
     document.getElementById('rarity-label').style.color = '#5a5580';
     document.getElementById('rarity-indicator').style.background = '#4a4070';
     document.getElementById('combo-hint').style.display = 'none';
-    document.getElementById('stat-atk').textContent = '—';
-    document.getElementById('stat-hp').textContent = '—';
-    document.getElementById('stat-multi').textContent = '—';
     return;
   }
+
   document.getElementById('sel-slime').textContent = slime.name;
   document.getElementById('base-rarity').textContent = fmt(slime.base);
+
   let mutMult = 1, presetMatch = null;
   if (sorted.length > 0) {
     presetMatch = presets.find(p => { const ps=[...p.ids].sort(); return ps.length===sorted.length&&ps.every((v,i)=>v===sorted[i]); });
     mutMult = presetMatch ? presetMatch.mult : sorted.reduce((acc,id) => { const m=mutations.find(x=>x.id===id); return acc*(m?m.mult:1); },1);
   }
-  const final = slime.base * mutMult;
-  document.getElementById('rarity-value').textContent = fmt(final);
+  document.getElementById('rarity-value').textContent = fmt(slime.base * mutMult);
   document.getElementById('rarity-label').textContent = slime.tier + (sorted.length ? ' + ' + sorted.join(' ') : '');
   document.getElementById('rarity-label').style.color = slime.color;
   document.getElementById('rarity-indicator').style.background = slime.color;
 
-  // stat multiplier lookup
   const statKey = sorted.join('+');
-  const statMult = statMultipliers[statKey] ?? sorted.reduce((acc, id) => {
-    const m = mutations.find(x => x.id === id);
-    return acc * (m ? m.mult : 1);
-  }, 1);
-  document.getElementById('stat-atk').textContent = fmtNum(Math.round(slime.atk * statMult));
-  document.getElementById('stat-hp').textContent = fmtNum(Math.round(slime.hp * statMult));
+  const statMult = statMultipliers[statKey] ?? 1;
+  const atk = Math.round((slime.atk / 10) * (9 + currentLevel) * statMult);
+  const hp  = Math.round((slime.hp / 10) * (9 + currentLevel) * statMult);
+  document.getElementById('stat-atk').textContent = fmtNum(atk);
+  document.getElementById('stat-hp').textContent = fmtNum(hp);
   document.getElementById('stat-multi').textContent = 'x' + statMult;
 
   if (presetMatch) {
